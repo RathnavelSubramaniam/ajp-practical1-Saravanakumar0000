@@ -12,10 +12,10 @@ class Point {
 }
 
 class Quadrilateral {
-    protected Point point1;
-    protected Point point2;
-    protected Point point3;
-    protected Point point4;
+    private final Point point1;
+    private final Point point2;
+    private final Point point3;
+    private final Point point4;
 
     public Quadrilateral(Point p1, Point p2, Point p3, Point p4) {
         this.point1 = p1;
@@ -23,6 +23,11 @@ class Quadrilateral {
         this.point3 = p3;
         this.point4 = p4;
     }
+
+    public Point getPoint1() { return point1; }
+    public Point getPoint2() { return point2; }
+    public Point getPoint3() { return point3; }
+    public Point getPoint4() { return point4; }
 }
 
 class Trapezoid extends Quadrilateral {
@@ -31,9 +36,9 @@ class Trapezoid extends Quadrilateral {
     }
 
     public double calculateArea() {
-        double base1 = Math.abs(point1.getX() - point2.getX());
-        double base2 = Math.abs(point3.getX() - point4.getX());
-        double height = Math.abs(point1.getY() - point3.getY());
+        double base1 = Math.abs(getPoint1().getX() - getPoint2().getX());
+        double base2 = Math.abs(getPoint3().getX() - getPoint4().getX());
+        double height = Math.abs(getPoint1().getY() - getPoint3().getY());
         return (base1 + base2) * height / 2.0;
     }
 }
@@ -44,8 +49,8 @@ class Rectangle extends Quadrilateral {
     }
 
     public double calculateArea() {
-        double length = Math.abs(point1.getX() - point2.getX());
-        double width = Math.abs(point2.getY() - point3.getY());
+        double length = Math.abs(getPoint1().getX() - getPoint2().getX());
+        double width = Math.abs(getPoint2().getY() - getPoint3().getY());
         return length * width;
     }
 }
@@ -81,7 +86,7 @@ public class Practical1 {
         Square square = new Square(p1, 3);
 
         System.out.println("Area of trapezoid="+trapezoid.calculateArea());
-        System.out.println("Area of rectangle="+ rectangle.calculateArea());
+        System.out.println("Area of rectangle="+rectangle.calculateArea());
         System.out.println("Area of square="+square.calculateArea());
     }
 }

@@ -80,8 +80,8 @@ public class Practical1 {
         Rectangle rectangle = new Rectangle(p1, p2, p3, p4);
         Square square = new Square(p1, 3);
 
-        System.out.println("Area of trapezoid = " + trapezoid.calculateArea());
-        System.out.println("Area of rectangle = " + rectangle.calculateArea());
-        System.out.println("Area of square = " + square.calculateArea());
+        System.out.println("Area of trapezoid="+trapezoid.calculateArea());
+        System.out.println("Area of rectangle="+ rectangle.calculateArea());
+        System.out.println("Area of square="+square.calculateArea());
     }
 }

@@ -1,0 +1,33 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Practical1.java
+      id: practical1-java
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Practical1.java
+        setup-command: javac Practical1.java
+        command: java Practical
+        input: ''
+        expected-output: ''
+        comparison-method: contains
+        timeout: 10
+        max-score: 10
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        PRACTICAL1-JAVA_RESULTS: "${{steps.practical1-java.outputs.result}}"
+      with:
+        runners: practical1-java
